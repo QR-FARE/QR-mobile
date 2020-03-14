@@ -1,0 +1,12 @@
+{
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "none",
+  "prettier.arrowParens": "avoid",
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
