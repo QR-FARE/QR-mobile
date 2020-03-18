@@ -12,6 +12,7 @@ import SearchFrom from '../../Components/Commons/Forms/SearchForm';
 import TicketsList from '../../Components/Commons/Lists/TicketsList';
 import {createStackNavigator} from 'react-navigation-stack';
 import Colors from '../../../Themes/Colors/colors.json';
+import {} from '';
 
 class QRScreen extends React.Component {
   render() {
@@ -19,7 +20,16 @@ class QRScreen extends React.Component {
     return (
       <View style={{flex: 1}}>
         <BackgroundOrange
-          Form={<Text style={{alignSelf: 'center'}}>12 Tickets Réservés</Text>}
+          Form={
+            <Text
+              style={{
+                alignSelf: 'center',
+                margin: 10,
+                color: Colors.BLUE_PRIMARY,
+              }}>
+              12 Tickets Réservés
+            </Text>
+          }
         />
         <ScrollView contentContainerStyle={{marginTop: 200}}>
           <TicketsList navigation={navigation} />

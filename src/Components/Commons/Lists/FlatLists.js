@@ -48,21 +48,20 @@ class Item extends React.Component {
     return (
       <View style={styles.ContainerList}>
         <Image source={Im} style={styles.EventLogo} />
-        <View style={{marginLeft: 10}}>
-          <Text style={styles.EventTitle}>{this.props.item}</Text>
+        <View style={{marginLeft: 10, marginTop: 10}}>
           <View style={styles.Location}>
-            <Text style={styles.where}>
-              <Icon name="map-marker-alt" /> Dakar
-            </Text>
+            <View style={styles.entity1}>
+              <Text style={styles.event}>DADJU & Maitre GIMS</Text>
+              <Text style={styles.type}>3D</Text>
+            </View>
+            <Text style={styles.where}>Dakar</Text>
           </View>
-          <View style={styles.Timer}>
-            <Text>
-              <Icon name="clock" /> 12h30
+          <View style={styles.TimerPrice}>
+            <Text style={{color: Colors.BLUE_PRIMARY, fontSize: 15}}>
+              12h30 GMT
             </Text>
+            <Text style={styles.Price}>10000 FCFA</Text>
           </View>
-        </View>
-        <View style={styles.ContentPrice}>
-          <Text style={styles.Price}>10000 FCFA</Text>
         </View>
       </View>
     );
@@ -73,16 +72,16 @@ export default class FlatLists extends React.Component {
   render() {
     return (
       <FlatList
-        horizontal={true}
+        horizontal={false}
         showsHorizontalScrollIndicator={false}
         style={styles.List}
         data={DATA}
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.navigate('BookingS', {
+              this.props.navigation.navigate('TicketsS', {
                 id: item.key,
-                title: item.title,
+                title: this.props.navigation.getParam('title'),
               })
             }>
             <Item item={item.title} />
@@ -101,6 +100,9 @@ const styles = StyleSheet.create({
   },
   ContainerList: {
     backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: Colors.BLUE_PRIMARY,
+    borderRadius: 10,
     padding: 10,
     marginBottom: 10,
     shadowColor: 'black',
@@ -108,37 +110,51 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     shadowOpacity: 1.0,
     elevation: 2,
-    marginRight: 15,
-    width: Dimensions.get('screen').width - 170,
+    marginRight: 0,
+    flex: 1,
+    flexDirection: 'row',
+    height: Dimensions.get('screen').height - 450,
+    //width: Dimensions.get('screen').width - 170,
   },
   EventLogo: {
-    height: 100,
-    width: 150,
+    height: Dimensions.get('window').height - 500,
+    width: 100,
     alignSelf: 'center',
   },
-  EventTitle: {
-    color: 'black',
-    fontFamily: Fonts.titleEvents,
+  event: {
+    color: Colors.BLUE_PRIMARY,
+    fontSize: 15,
+  },
+  type: {
+    color: Colors.BLUE_PRIMARY,
     fontWeight: 'bold',
-    fontSize: 20,
-    alignSelf: 'center',
+    paddingLeft: 20,
+    fontSize: 15,
   },
-  Timer: {marginLeft: 10, fontFamily: Fonts.time},
-  Location: {margin: 10},
-  ContentPrice: {
-    backgroundColor: '#F75454',
-    borderRadius: 80,
-    padding: 10,
-    marginLeft: 50,
-    marginTop: 10,
-    alignSelf: 'flex-end',
+  TimerPrice: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginTop: 30,
+    fontFamily: Fonts.time,
   },
+  Location: {margin: 10, flex: 1, flexDirection: 'column'},
   Price: {
-    color: 'white',
-    alignSelf: 'center',
+    color: 'black',
     fontFamily: Fonts.price,
+    fontWeight: 'bold',
+    paddingLeft: 30,
+    fontSize: 15,
   },
   where: {
-    color: Colors.ORANGE_PRIMARY,
+    color: Colors.BLUE_PRIMARY,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontSize: 15,
+  },
+  entity1: {
+    flex: 1,
+    flexDirection: 'row',
+    //justifyContent: 'space-around',
   },
 });

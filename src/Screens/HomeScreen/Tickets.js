@@ -10,24 +10,43 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import BackgroundOrange from '../../Components/Commons/headers/BackgroundOrange';
-import Tickets from './Tickets';
-import SearchFrom from '../../Components/Commons/Forms/SearchForm';
-import FlatLists from '../../Components/Commons/Lists/FlatLists';
+import Im from '../../assets/images/dadj.jpg';
 import Colors from '../../../Themes/Colors/colors.json';
-import {createStackNavigator} from 'react-navigation-stack';
 
-class Booking extends React.Component {
+class Tickets extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: navigation.getParam('title'),
   });
   render() {
     const {navigation} = this.props;
-    console.log(navigation.state.params.title);
     return (
       <View>
-        <BackgroundOrange Form={<SearchFrom />} />
+        <BackgroundOrange
+          Form={
+            <TouchableOpacity style={styles.bookingBtn}>
+              <Text style={{color: 'white', fontSize: 15, fontWeight: 'bold'}}>
+                Reserver
+              </Text>
+            </TouchableOpacity>
+          }
+        />
         <ScrollView style={{marginTop: Dimensions.get('window').height - 460}}>
-          <FlatLists navigation={navigation} />
+          <View style={styles.imageBackground}>
+            <Image source={Im} style={styles.EventLogo} />
+          </View>
+          <View style={styles.cardBackground}>
+            <Text style={styles.EventTitle}>
+              {navigation.getParam('title')}
+            </Text>
+            <Text style={styles.Location}>
+              <Icon name="map-marker-alt" /> Dakar
+            </Text>
+            <Text style={styles.Timer}>20H30</Text>
+            <View style={styles.containerPrice}>
+              <Text style={styles.price}>10000 FCFA</Text>
+            </View>
+            <Text style={styles.organisateur}>Organisé par Event ®</Text>
+          </View>
         </ScrollView>
       </View>
     );
@@ -36,11 +55,11 @@ class Booking extends React.Component {
 
 const styles = StyleSheet.create({
   bookingBtn: {
-    backgroundColor: Colors.GREEN_PRIMARY,
+    backgroundColor: Colors.BLUE_PRIMARY,
     alignItems: 'center',
     padding: 15,
     borderRadius: 20,
-    margin: 20,
+    //margin: 20,
   },
   ContainerList: {
     backgroundColor: 'white',
@@ -55,8 +74,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   EventLogo: {
-    height: Dimensions.get('screen').height - 400,
-    width: Dimensions.get('screen').width - 60,
+    height: Dimensions.get('screen').height - 500,
+    width: Dimensions.get('screen').width - 100,
+    alignSelf: 'center',
   },
   EventTitle: {
     color: 'black',
@@ -110,4 +130,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Booking;
+export default Tickets;
